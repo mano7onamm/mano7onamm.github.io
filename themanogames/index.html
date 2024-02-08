@@ -1,1 +1,79 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vrustify - Rust Validation Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        h1, h2 {
+            color: #446cb3;
+        }
+
+        p, pre {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vrustify</h1>
+        <p>Vrustify is a small but powerful library for data validation in Rust. It provides validation functions for:</p>
+        <ul>
+            <li>Email addresses</li>
+            <li>URLs</li>
+            <li>Phone numbers</li>
+            <li>Passwords</li>
+        </ul>
+        
+        <h2>Installation</h2>
+        <p>You can include `Vrustify` library to your project, by adding following to your `Cargo.toml`:</p>
+        <pre>
+[dependencies]
+Vrustify = "0.1.0"
+        </pre>
+        <p>And then do a cargo build:</p>
+        <pre>
+cargo build
+        </pre>
+
+        <h2>Usage</h2>
+        <p>First, include the `Vrustify` in your Rust file:</p>
+        <pre>
+extern crate Vrustify;
+        </pre>
+        <p>Then you can use the validation functions in your code as follows:</p>
+        <p>For email validation:</p>
+        <pre>
+if Vrustify::email::validate("example@example.com") {
+    println!("Valid email!");
+} else {
+    println!("Invalid email.");
+}
+        </pre>
+        <p>For URL validation:</p>
+        <pre>
+if Vrustify::url::validate("https://example.com") {
+    println!("Valid URL!");
+} else {
+    println!("Invalid URL.");
+}
+        </pre>
+        <p>And alike for other types of validation.</p>
+
+        <h2>License</h2>
+        <p>`Vrustify` is distributed under the MIT license. See `LICENSE` file for additional information.</p>
+    </div>
+</body>
+</html>
