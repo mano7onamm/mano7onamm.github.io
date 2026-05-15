@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Набор вопросов Виктору Кравченко</title>
+  <style>
+    :root {
+      --ink: #253046;
+      --muted: #68718a;
+      --paper: #fffaf2;
+      --panel: #ffffff;
+      --sky: #bdefff;
+      --mint: #bff6d2;
+      --sun: #ffe27a;
+      --coral: #ff8d7a;
+      --berry: #c65bd7;
+      --blue: #5b8cff;
+      --line: rgba(37, 48, 70, 0.14);
+      --shadow: 0 12px 30px rgba(36, 44, 68, 0.14);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+      background:
+        radial-gradient(circle at 18px 18px, rgba(255, 226, 122, 0.28) 0 7px, transparent 8px) 0 0 / 76px 76px,
+        linear-gradient(135deg, #fff7e7 0%, #f4fbff 48%, #fff0f3 100%);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 430px;
+      padding: 28px 20px 34px;
+      background:
+        linear-gradient(90deg, rgba(255, 250, 242, 0.96), rgba(255, 250, 242, 0.72)),
+        linear-gradient(120deg, var(--sky), #fff7c7 44%, #ffd4df);
+      border-bottom: 3px solid rgba(37, 48, 70, 0.08);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .title-block {
+      padding: 22px 0;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      color: #4c3f09;
+      background: var(--sun);
+      border: 2px solid rgba(37, 48, 70, 0.15);
+      border-radius: var(--radius);
+      font-weight: 900;
+      box-shadow: 4px 4px 0 rgba(37, 48, 70, 0.12);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 18px 0 14px;
+      font-size: clamp(2.1rem, 7vw, 5.1rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(1.02rem, 2.4vw, 1.35rem);
+      line-height: 1.45;
+      color: #39445d;
+      font-weight: 650;
+    }
+
+    .starter {
+      margin-top: 22px;
+      padding: 16px;
+      max-width: 780px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 2px dashed rgba(198, 91, 215, 0.42);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .starter-label {
+      margin: 0 0 8px;
+      color: #6d3f83;
+      font-weight: 900;
+    }
+
+    .starter-text {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      font-weight: 760;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      min-height: 44px;
+      padding: 10px 14px;
+      color: var(--ink);
+      background: var(--panel);
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      font-weight: 850;
+      box-shadow: 3px 3px 0 rgba(37, 48, 70, 0.12);
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 5px 5px 0 rgba(37, 48, 70, 0.14);
+      outline: 3px solid rgba(91, 140, 255, 0.28);
+    }
+
+    .btn.primary {
+      background: var(--coral);
+      color: #fff;
+      border-color: rgba(37, 48, 70, 0.18);
+    }
+
+    .btn.green {
+      background: var(--mint);
+    }
+
+    .hero-collage {
+      position: relative;
+      min-height: 370px;
+    }
+
+    .photo {
+      position: absolute;
+      overflow: hidden;
+      background: #fff;
+      border: 8px solid #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo.dog {
+      width: 50%;
+      aspect-ratio: 0.76;
+      left: 0;
+      top: 12px;
+      transform: rotate(-4deg);
+    }
+
+    .photo.bunny {
+      width: 46%;
+      aspect-ratio: 0.76;
+      right: 8px;
+      top: 68px;
+      transform: rotate(5deg);
+    }
+
+    .big-unicorn {
+      position: absolute;
+      width: 58%;
+      right: 18%;
+      bottom: -4px;
+      filter: drop-shadow(0 14px 16px rgba(37, 48, 70, 0.18));
+      transform: rotate(-3deg);
+    }
+
+    .sticker {
+      position: absolute;
+      width: 76px;
+      opacity: 0.92;
+      filter: drop-shadow(0 8px 8px rgba(37, 48, 70, 0.12));
+      pointer-events: none;
+    }
+
+    .sticker.s1 { left: 4%; top: 32px; transform: rotate(-10deg); }
+    .sticker.s2 { right: 5%; top: 28px; transform: scaleX(-1) rotate(7deg); }
+    .sticker.s3 { left: 9%; bottom: -12px; transform: rotate(6deg); }
+    .sticker.s4 { right: 14%; bottom: 18px; transform: scaleX(-1) rotate(-8deg); }
+
+    .toolbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 250, 242, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toolbar {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search {
+      min-height: 44px;
+      width: 100%;
+      padding: 10px 12px;
+      background: #fff;
+      color: var(--ink);
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .filter-btn {
+      min-height: 38px;
+      padding: 8px 10px;
+      color: var(--ink);
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      font-weight: 850;
+    }
+
+    .filter-btn.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: rgba(37, 48, 70, 0.12);
+    }
+
+    main {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      padding: 22px 20px 60px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 5px 5px 0 rgba(37, 48, 70, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .progress-track {
+      height: 14px;
+      overflow: hidden;
+      background: rgba(37, 48, 70, 0.12);
+      border-radius: var(--radius);
+      border: 1px solid rgba(37, 48, 70, 0.12);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--coral), var(--sun), var(--mint), var(--sky));
+      transition: width 250ms ease;
+    }
+
+    .section {
+      margin: 24px 0 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 12px;
+    }
+
+    .section-number {
+      display: grid;
+      place-items: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 8px;
+      color: #fff;
+      background: #273555;
+      border-radius: var(--radius);
+      font-weight: 950;
+      box-shadow: 3px 3px 0 rgba(37, 48, 70, 0.16);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .question-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 238px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 6px 6px 0 rgba(37, 48, 70, 0.08);
+    }
+
+    .question-card.mastered {
+      border-color: rgba(49, 171, 111, 0.42);
+      background: #f8fff9;
+    }
+
+    .question-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 10px;
+      color: #fff;
+      background: #273555;
+      border-radius: var(--radius);
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .topic {
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 0.95rem;
+      text-align: right;
+    }
+
+    .question-text {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.46;
+      font-weight: 700;
+    }
+
+    .question-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .copy-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .mini-btn,
+    .toggle {
+      min-height: 40px;
+      padding: 8px 10px;
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 900;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .mini-btn:hover,
+    .mini-btn:focus-visible,
+    .toggle:hover,
+    .toggle:focus-visible {
+      transform: translateY(-1px);
+      outline: 3px solid rgba(91, 140, 255, 0.22);
+    }
+
+    .toggle.done {
+      background: var(--mint);
+      border-color: rgba(49, 171, 111, 0.28);
+    }
+
+    .toggle.mastered {
+      background: var(--sun);
+      border-color: rgba(191, 148, 0, 0.28);
+    }
+
+    .copy-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-height: 40px;
+      padding: 9px 10px;
+      color: var(--muted);
+      background: #f6f8ff;
+      border: 2px solid rgba(91, 140, 255, 0.16);
+      border-radius: var(--radius);
+      font-size: 0.92rem;
+      font-weight: 760;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      z-index: 30;
+      transform: translate(-50%, 110px);
+      padding: 12px 14px;
+      color: #fff;
+      background: #273555;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      transition: transform 220ms ease;
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    .empty {
+      display: none;
+      padding: 24px;
+      background: #fff;
+      border: 2px dashed var(--line);
+      border-radius: var(--radius);
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .source-note {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        padding-top: 18px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-collage {
+        min-height: 330px;
+        order: -1;
+      }
+
+      .title-block {
+        padding-top: 0;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        justify-content: stretch;
+      }
+
+      .filter-btn {
+        flex: 1 1 120px;
+      }
+
+      .questions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-collage {
+        min-height: 285px;
+      }
+
+      .photo.dog {
+        width: 46%;
+        left: 4px;
+      }
+
+      .photo.bunny {
+        width: 43%;
+        right: 4px;
+      }
+
+      .big-unicorn {
+        width: 64%;
+        right: 18%;
+      }
+
+      .sticker {
+        width: 54px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .question-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .copy-row {
+        grid-template-columns: 1fr;
+      }
+
+      .copy-text {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <img class="sticker s1" src="assets/unicorn-openclipart.png" alt="">
+      <img class="sticker s2" src="assets/unicorn-openclipart.png" alt="">
+      <img class="sticker s3" src="assets/unicorn-openclipart.png" alt="">
+      <img class="sticker s4" src="assets/unicorn-openclipart.png" alt="">
+
+      <div class="hero-inner">
+        <div class="title-block">
+          <div class="kicker">60 уроков для Кати</div>
+          <h1>Набор вопросов Виктору Кравченко</h1>
+          <p class="subtitle">Маршрут от сложения и дробей до производных, интегралов, уравнений Максвелла и теории относительности.</p>
+
+          <div class="starter">
+            <p class="starter-label">Начало каждого вопроса</p>
+            <p class="starter-text" id="starterText">Объясни мне это как ребёнку, потом покажи на примере, потом дай 3 лёгкие задачки, потом одну чуть сложнее, а потом проверь мой ответ.</p>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn primary" id="copyStarter">Копировать начало</button>
+            <button class="btn green" id="copyAll">Копировать все вопросы</button>
+            <button class="btn" id="resetProgress">Сбросить отметки</button>
+          </div>
+        </div>
+
+        <div class="hero-collage" aria-label="Друзья Кати и единорог">
+          <div class="photo dog"><img src="assets/blue-dog.jpg" alt="Голубой пушистый друг"></div>
+          <div class="photo bunny"><img src="assets/bunny.jpg" alt="Голубой зайчик"></div>
+          <img class="big-unicorn" src="assets/unicorn-openclipart.png" alt="Розовый единорог">
+        </div>
+      </div>
+    </header>
+
+    <div class="toolbar-wrap">
+      <div class="toolbar">
+        <input class="search" id="search" type="search" placeholder="Найти тему: дроби, площадь, интеграл..." autocomplete="off">
+        <div class="filters" aria-label="Фильтры">
+          <button class="filter-btn active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="todo">Еще учить</button>
+          <button class="filter-btn" data-filter="understood">Понял</button>
+          <button class="filter-btn" data-filter="mastered">Усвоил</button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="stats" aria-label="Прогресс">
+        <div class="stat">
+          <strong id="understoodCount">0</strong>
+          <span>ответов понято</span>
+        </div>
+        <div class="stat">
+          <strong id="masteredCount">0</strong>
+          <span>тем усвоено</span>
+        </div>
+        <div class="stat">
+          <strong id="totalCount">60</strong>
+          <span>вопросов всего</span>
+          <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+      </section>
+
+      <div id="questionRoot"></div>
+      <div class="empty" id="emptyState">Ничего не нашлось. Попробуй другое слово.</div>
+
+      <p class="source-note">Единорог: Openclipart, изображение 271511. Фотографии друзей Кати взяты из прикрепленных файлов.</p>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Скопировано</div>
+
+  <script>
+    const starter = "Объясни мне это как ребёнку, потом покажи на примере, потом дай 3 лёгкие задачки, потом одну чуть сложнее, а потом проверь мой ответ.";
+    const storageKey = "katya-viktor-math-progress-v1";
+    let filter = "all";
+
+    const sections = [
+      {
+        title: "Числа и сложение",
+        questions: [
+          "Виктор Кравченко, объясни мне, что такое числа: зачем они нужны, как ими считать предметы, и почему число 5 больше числа 3? Покажи на яблоках, конфетах или игрушках.",
+          "Виктор, объясни мне сложение так, чтобы я поняла, что значит прибавить. Например, если у меня было 3 конфеты, а единорог дал ещё 2, почему получилось 5?",
+          "Виктор, научи меня вычитанию: что значит убрать или потратить? Объясни на примере, если у меня было 7 шариков, а 3 улетели.",
+          "Виктор, объясни мне, как связаны сложение и вычитание. Почему если 4 + 3 = 7, то 7 - 3 = 4?",
+          "Виктор, расскажи, что такое ноль. Почему 5 + 0 = 5, а если от 5 отнять 5, получится 0?"
+        ]
+      },
+      {
+        title: "Умножение и деление",
+        questions: [
+          "Виктор, объясни мне умножение как много раз сложить одно и то же. Например, почему 3 x 4 - это то же самое, что 4 + 4 + 4?",
+          "Виктор, объясни таблицу умножения не как зубрёжку, а как закономерность. Почему 5 x 6 и 6 x 5 дают одинаковый ответ?",
+          "Виктор, научи меня делению: что значит разделить поровну? Например, если 12 конфет разделить между 3 детьми, почему каждый получит по 4?",
+          "Виктор, объясни, как связаны умножение и деление. Почему если 3 x 4 = 12, то 12 : 3 = 4?",
+          "Виктор, расскажи мне, что такое остаток при делении. Например, если 10 печенек делить между 3 детьми, что произойдёт?"
+        ]
+      },
+      {
+        title: "Дроби, части и проценты",
+        questions: [
+          "Виктор, объясни мне, что такое дробь. Почему половина торта записывается как 1/2, а четвертинка как 1/4?",
+          "Виктор, покажи мне, почему 1/2 и 2/4 - это одно и то же. Объясни на круге, пицце или шоколадке.",
+          "Виктор, научи меня складывать дроби с одинаковыми знаменателями. Например, почему 1/5 + 2/5 = 3/5?",
+          "Виктор, объясни мне, как складывать дроби с разными знаменателями. Почему для 1/2 + 1/3 нужно искать общий знаменатель?",
+          "Виктор, объясни, что такое десятичные дроби. Почему 0,5 - это половина, а 0,25 - четверть?",
+          "Виктор, расскажи мне, что такое проценты. Почему 50% - это половина, 25% - четверть, а 100% - целое?"
+        ]
+      },
+      {
+        title: "Отрицательные числа и координаты",
+        questions: [
+          "Виктор, объясни мне отрицательные числа. Как может быть число меньше нуля? Покажи на примере температуры, долгов или лифта.",
+          "Виктор, научи меня складывать и вычитать отрицательные числа. Почему 3 - 5 = -2, а -2 + 7 = 5?",
+          "Виктор, объясни мне числовую прямую. Как по ней понимать, где находятся положительные и отрицательные числа?",
+          "Виктор, расскажи, что такое координаты. Как найти точку на плоскости, если у неё есть два числа, например x = 3 и y = 2?"
+        ]
+      },
+      {
+        title: "Геометрия и фигуры",
+        questions: [
+          "Виктор, объясни мне, что такое точка, линия, отрезок и луч. Чем они отличаются друг от друга?",
+          "Виктор, расскажи мне, что такое угол. Почему бывают острые, прямые и тупые углы? Покажи на часах или дверце.",
+          "Виктор, объясни мне треугольники. Почему у треугольника три стороны, какие бывают треугольники и почему сумма углов в треугольнике равна 180 градусам?",
+          "Виктор, расскажи мне про квадрат, прямоугольник, ромб и параллелограмм. Чем они похожи и чем отличаются?",
+          "Виктор, объясни мне круг и окружность. Почему окружность - это только линия, а круг - вся фигура внутри?"
+        ]
+      },
+      {
+        title: "Периметр, площадь и объём",
+        questions: [
+          "Виктор, объясни, что такое периметр. Почему периметр - это длина всей границы фигуры?",
+          "Виктор, объясни, что такое площадь. Почему площадь показывает, сколько места занимает фигура на плоскости?",
+          "Виктор, научи меня находить площадь прямоугольника и квадрата. Почему площадь прямоугольника равна длина x ширина?",
+          "Виктор, объясни мне площадь треугольника. Почему она равна половине площади прямоугольника с такой же основой и высотой?",
+          "Виктор, расскажи мне про объём. Почему кубики, коробки и стаканы имеют объём, а плоские фигуры - только площадь?"
+        ]
+      },
+      {
+        title: "Алгебра и неизвестные числа",
+        questions: [
+          "Виктор, объясни мне, что такое переменная. Почему вместо неизвестного числа можно написать букву x?",
+          "Виктор, научи меня решать простые уравнения. Например, если x + 3 = 8, как понять, чему равен x?",
+          "Виктор, объясни, почему с уравнением можно делать одно и то же с двух сторон. Почему если x + 5 = 12, мы можем отнять 5 и слева, и справа?",
+          "Виктор, расскажи мне, что такое формула. Почему формулы помогают быстро находить площадь, скорость, расстояние или время?",
+          "Виктор, объясни мне, что такое функция. Почему можно сказать, что y зависит от x, например y = 2x + 1?"
+        ]
+      },
+      {
+        title: "Графики, степени и корни",
+        questions: [
+          "Виктор, научи меня строить график функции. Как по формуле y = x + 2 получить линию на координатной плоскости?",
+          "Виктор, объясни мне степени. Что значит 2^2, 2^3 и почему 2^3 - это 2 x 2 x 2?",
+          "Виктор, расскажи мне, что такое квадратный корень. Почему корень из 9 равен 3, а корень из 16 равен 4?",
+          "Виктор, объясни мне квадратные уравнения очень просто. Почему в уравнении с x^2 может быть два ответа?",
+          "Виктор, расскажи мне, что такое парабола. Почему график y = x^2 похож на чашку или улыбку?"
+        ]
+      },
+      {
+        title: "Пределы и начало высшей математики",
+        questions: [
+          "Виктор, объясни мне, что такое бесконечность. Это число или идея? Почему нельзя просто досчитать до бесконечности?",
+          "Виктор, объясни мне предел на очень простом примере. Что значит, что число или функция приближается к чему-то, но может не становиться этим прямо сразу?",
+          "Виктор, покажи мне предел на примере: если я каждый раз прохожу половину оставшегося пути до единорога, почему я всё ближе и ближе, но математически можно говорить о пределе?",
+          "Виктор, объясни мне, зачем нужны пределы. Почему без них нельзя хорошо понять скорость, касательную, производную и интеграл?"
+        ]
+      },
+      {
+        title: "Производные и дифференцирование",
+        questions: [
+          "Виктор, объясни мне производную как скорость изменения. Если машинка едет, как математика узнаёт её скорость в один конкретный момент?",
+          "Виктор, объясни производную через горку. Почему производная показывает, насколько круто график поднимается или опускается?",
+          "Виктор, покажи мне, как находить простые производные. Например, почему у функции y = x^2 производная равна 2x? Объясни без страшных слов.",
+          "Виктор, расскажи, где производные встречаются в жизни: в скорости, росте растений, движении планет, экономике, играх и физике."
+        ]
+      },
+      {
+        title: "Интегралы",
+        questions: [
+          "Виктор, объясни мне интеграл как сумму маленьких кусочков. Почему площадь под графиком можно найти, если разбить её на много-много тонких прямоугольников?",
+          "Виктор, объясни, как связаны производная и интеграл. Почему производная показывает изменение, а интеграл как будто собирает изменения обратно в целое?"
+        ]
+      },
+      {
+        title: "Физика, Максвелл и относительность",
+        questions: [
+          "Виктор, объясни мне, что такое скорость, ускорение и сила. Почему если на предмет действует сила, он может начать двигаться быстрее или изменить направление?",
+          "Виктор, расскажи мне законы Ньютона простыми словами. Почему предметы не начинают двигаться сами по себе и почему действие равно противодействию?",
+          "Виктор, объясни, что такое энергия. Почему бывают кинетическая энергия движения и потенциальная энергия высоты?",
+          "Виктор, расскажи мне, что такое электричество. Что такое заряд, ток, напряжение и сопротивление?",
+          "Виктор, объясни мне магнетизм. Почему магнит притягивает некоторые предметы и как электричество связано с магнитами?",
+          "Виктор, объясни мне уравнения Максвелла не формулами сразу, а идеями: что они говорят про электрические поля, магнитные поля и свет?",
+          "Виктор, покажи мне, почему свет - это электромагнитная волна. Как электрическое и магнитное поля могут бежать через пространство?",
+          "Виктор, объясни мне специальную теорию относительности. Почему время и расстояние могут зависеть от скорости наблюдателя?",
+          "Виктор, расскажи, почему скорость света особенная. Почему ничто обычное не может двигаться быстрее света?",
+          "Виктор, объясни мне общую теорию относительности очень просто. Почему гравитация - это не просто сила, а искривление пространства и времени?"
+        ]
+      }
+    ];
+
+    const questions = sections.flatMap((section, sectionIndex) =>
+      section.questions.map((text, localIndex) => ({
+        id: `${sectionIndex + 1}-${localIndex + 1}`,
+        number: sections.slice(0, sectionIndex).reduce((sum, item) => sum + item.questions.length, 0) + localIndex + 1,
+        sectionIndex,
+        sectionTitle: section.title,
+        text
+      }))
+    );
+
+    const root = document.getElementById("questionRoot");
+    const search = document.getElementById("search");
+    const emptyState = document.getElementById("emptyState");
+    const toast = document.getElementById("toast");
+    const understoodCount = document.getElementById("understoodCount");
+    const masteredCount = document.getElementById("masteredCount");
+    const totalCount = document.getElementById("totalCount");
+    const progressFill = document.getElementById("progressFill");
+    totalCount.textContent = String(questions.length);
+
+    const loadProgress = () => {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey)) || {};
+      } catch {
+        return {};
+      }
+    };
+
+    let progress = loadProgress();
+
+    const saveProgress = () => {
+      localStorage.setItem(storageKey, JSON.stringify(progress));
+    };
+
+    const promptFor = (question) => `${starter}\n\n${question}`;
+
+    const showToast = (message) => {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 1700);
+    };
+
+    const copyText = async (text, message = "Скопировано") => {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        document.body.removeChild(area);
+      }
+      showToast(message);
+    };
+
+    const updateStats = () => {
+      const understood = questions.filter((q) => progress[q.id]?.understood).length;
+      const mastered = questions.filter((q) => progress[q.id]?.mastered).length;
+      understoodCount.textContent = String(understood);
+      masteredCount.textContent = String(mastered);
+      progressFill.style.width = `${Math.round((mastered / questions.length) * 100)}%`;
+    };
+
+    const matchesFilter = (question) => {
+      const state = progress[question.id] || {};
+      if (filter === "todo") return !state.mastered;
+      if (filter === "understood") return Boolean(state.understood);
+      if (filter === "mastered") return Boolean(state.mastered);
+      return true;
+    };
+
+    const render = () => {
+      const query = search.value.trim().toLowerCase();
+      root.innerHTML = "";
+      let visibleCount = 0;
+
+      sections.forEach((section, sectionIndex) => {
+        const sectionQuestions = questions.filter((question) => {
+          const haystack = `${question.text} ${question.sectionTitle}`.toLowerCase();
+          return question.sectionIndex === sectionIndex && haystack.includes(query) && matchesFilter(question);
+        });
+
+        if (!sectionQuestions.length) return;
+
+        visibleCount += sectionQuestions.length;
+        const sectionEl = document.createElement("section");
+        sectionEl.className = "section";
+        sectionEl.innerHTML = `
+          <div class="section-title">
+            <span class="section-number">${sectionIndex + 1}</span>
+            <h2>${section.title}</h2>
+          </div>
+          <div class="questions"></div>
+        `;
+
+        const list = sectionEl.querySelector(".questions");
+        sectionQuestions.forEach((question) => {
+          const state = progress[question.id] || {};
+          const card = document.createElement("article");
+          card.className = `question-card${state.mastered ? " mastered" : ""}`;
+          card.innerHTML = `
+            <div class="question-top">
+              <span class="badge">Вопрос ${question.number}</span>
+              <span class="topic">${question.sectionTitle}</span>
+            </div>
+            <p class="question-text">${question.text}</p>
+            <div class="question-actions">
+              <button class="toggle ${state.understood ? "done" : ""}" data-action="understood">${state.understood ? "Понял ответ" : "Ответ не понят"}</button>
+              <button class="toggle ${state.mastered ? "mastered" : ""}" data-action="mastered">${state.mastered ? "Усвоил" : "Ещё не усвоил"}</button>
+              <div class="copy-row">
+                <div class="copy-text">${starter}</div>
+                <button class="mini-btn" data-action="copy">Копировать</button>
+              </div>
+            </div>
+          `;
+
+          card.querySelector('[data-action="understood"]').addEventListener("click", () => {
+            progress[question.id] = { ...progress[question.id], understood: !progress[question.id]?.understood };
+            saveProgress();
+            render();
+          });
+
+          card.querySelector('[data-action="mastered"]').addEventListener("click", () => {
+            progress[question.id] = { ...progress[question.id], mastered: !progress[question.id]?.mastered };
+            if (progress[question.id].mastered) progress[question.id].understood = true;
+            saveProgress();
+            render();
+          });
+
+          card.querySelector('[data-action="copy"]').addEventListener("click", () => {
+            copyText(promptFor(question.text), `Вопрос ${question.number} скопирован`);
+          });
+
+          list.appendChild(card);
+        });
+
+        root.appendChild(sectionEl);
+      });
+
+      emptyState.style.display = visibleCount ? "none" : "block";
+      updateStats();
+    };
+
+    document.getElementById("copyStarter").addEventListener("click", () => copyText(starter, "Начало скопировано"));
+
+    document.getElementById("copyAll").addEventListener("click", () => {
+      const all = questions.map((question) => `${question.number}. ${promptFor(question.text)}`).join("\n\n");
+      copyText(all, "Все вопросы скопированы");
+    });
+
+    document.getElementById("resetProgress").addEventListener("click", () => {
+      if (!confirm("Сбросить все отметки Кати?")) return;
+      progress = {};
+      saveProgress();
+      render();
+      showToast("Отметки сброшены");
+    });
+
+    document.querySelectorAll(".filter-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        filter = button.dataset.filter;
+        render();
+      });
+    });
+
+    search.addEventListener("input", render);
+    render();
+  </script>
+</body>
+</html>
